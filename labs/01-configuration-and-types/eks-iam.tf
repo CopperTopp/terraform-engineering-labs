@@ -19,7 +19,7 @@ resource "aws_iam_role" "eks_cluster" {
 
   tags = {
     Name    = "eks-lab-cluster-role"
-    Project = "eks-lab"
+    Project = "tf-lab"
   }
 }
 

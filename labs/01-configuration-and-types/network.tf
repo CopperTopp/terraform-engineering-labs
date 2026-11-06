@@ -5,8 +5,8 @@ resource "aws_vpc" "lab" {
   enable_dns_hostnames = true
 
   tags = {
-    Name    = "eks-lab-vpc"
-    Project = "eks-lab"
+    Name    = "tf-lab-vpc"
+    Project = "tf-lab"
   }
 }
 
@@ -14,27 +14,17 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-resource "aws_subnet" "lab_a" {
+resource "aws_subnet" "lab" {
+  for_each = local.lab_subnets
+
   vpc_id                  = aws_vpc.lab.id
-  cidr_block              = local.lab_subnets.a.cidr_block
-  availability_zone       = local.lab_subnets.a.availability_zone
+  cidr_block              = each.value.cidr_block
+  availability_zone       = each.value.availability_zone
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "eks-lab-subnet-a"
-    Project = "eks-lab"
-  }
-}
-
-resource "aws_subnet" "lab_b" {
-  vpc_id                  = aws_vpc.lab.id
-  cidr_block              = local.lab_subnets.b.cidr_block
-  availability_zone       = local.lab_subnets.b.availability_zone
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name    = "eks-lab-subnet-b"
-    Project = "eks-lab"
+    Name    = "tf-lab-subnet-${each.key}"
+    Project = "tf-lab"
   }
 }
 
@@ -42,8 +32,8 @@ resource "aws_internet_gateway" "lab" {
   vpc_id = aws_vpc.lab.id
 
   tags = {
-    Name    = "eks-lab-ipw"
-    Project = "eks-lab"
+    Name    = "tf-lab-ipw"
+    Project = "tf-lab"
   }
 }
 
@@ -56,17 +46,14 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name    = "eks-lab-public"
-    Project = "eks-lab"
+    Name    = "tf-lab-public"
+    Project = "tf-lab"
   }
 }
 
-resource "aws_route_table_association" "lab_a" {
-  subnet_id      = aws_subnet.lab_a.id
-  route_table_id = aws_route_table.public.id
-}
+resource "aws_route_table_association" "lab" {
+  for_each = aws_subnet.lab
 
-resource "aws_route_table_association" "lab_b" {
-  subnet_id      = aws_subnet.lab_b.id
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.public.id
 }
