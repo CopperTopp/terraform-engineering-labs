@@ -3,7 +3,6 @@ variable "lab_subnets" {
 
   type = map(object({
     cidr_block = string
-    az_index   = number
   }))
 
   validation {
@@ -16,25 +15,27 @@ variable "lab_subnets" {
 
   validation {
     condition = alltrue([
-      for subnet in values(var.lab_subnets) :
-      try(
-        subnet.az_index >= 0 && subnet.az_index == floor(subnet.az_index),
-        false
-      )
+      for key in keys(var.lab_subnets):
+      length([
+        for az_name in data.aws_availability_zones.available.names :
+        az_name
+        if endswith(az_name, key)
+      ]) >= 1
     ])
 
-    error_message = "Each subnet az_index must be a non-negative whole number."
+    error_message = "Each subnet key must match an existing Availability Zone's lettered suffix. (ex. 'a' for 'us-east-2a')"
   }
 
   validation {
     condition = alltrue([
-      for subnet in values(var.lab_subnets) :
-      try(
-        subnet.az_index < length(data.aws_availability_zones.available.names),
-        false
-      )
+      for key in keys(var.lab_subnets):
+      length([
+        for az_name in data.aws_availability_zones.available.names :
+        az_name
+        if endswith(az_name, key)
+      ]) <= 1
     ])
 
-    error_message = "Each subnet az_index must be less than the number of Availability Zones, currently [${length(data.aws_availability_zones.available.names)}]"
+    error_message = "Invalid subnet key returned too many results."
   }
 }
