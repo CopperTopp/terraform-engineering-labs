@@ -15,7 +15,7 @@ variable "lab_subnets" {
 
   validation {
     condition = alltrue([
-      for key in keys(var.lab_subnets):
+      for key in keys(var.lab_subnets) :
       length([
         for az_name in data.aws_availability_zones.available.names :
         az_name
@@ -28,7 +28,7 @@ variable "lab_subnets" {
 
   validation {
     condition = alltrue([
-      for key in keys(var.lab_subnets):
+      for key in keys(var.lab_subnets) :
       length([
         for az_name in data.aws_availability_zones.available.names :
         az_name
