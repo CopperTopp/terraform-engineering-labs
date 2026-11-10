@@ -90,6 +90,8 @@ Planned work belongs in the learning roadmap.
 - Set environment variable to "lab" in lab.env.tfvars and "test" in
   test.env.tfvars.
 - Validated that environment variable was picked up in Name Tags.
+- Added Validation to new variable environment.
+- Updated Validation to show the failed value(s) in error_messages.
 
 ### Next milestone
 
