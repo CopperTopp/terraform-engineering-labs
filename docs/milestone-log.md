@@ -83,6 +83,14 @@ Planned work belongs in the learning roadmap.
 - Both plans reused the same module and proposed zero changes
   or destroys.
 
+### Parameterized Environment Name in Name Tags
+
+- Added environment variable to lab and test root main.tf files, and
+  network module's variables.tf file.
+- Set environment variable to "lab" in lab.env.tfvars and "test" in
+  test.env.tfvars.
+- Validated that environment variable was picked up in Name Tags.
+
 ### Next milestone
 
 - Reuse the same network module from a second root configuration

@@ -3,6 +3,11 @@ variable "vpc_cidr_block" {
   type        = string
 }
 
+variable "environment" {
+  description = "Environment name used in network resource tags."
+  type        = string
+}
+
 variable "lab_subnets" {
   description = "Subnet definition keyed by Availability Zone suffix."
 
@@ -15,6 +20,7 @@ module "network" {
   source = "../../modules/network"
 
   vpc_cidr_block = var.vpc_cidr_block
+  environment    = var.environment
   lab_subnets    = var.lab_subnets
 }
 

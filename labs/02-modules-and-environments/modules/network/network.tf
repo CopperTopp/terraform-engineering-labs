@@ -5,7 +5,7 @@ resource "aws_vpc" "lab" {
   enable_dns_hostnames = true
 
   tags = {
-    Name    = "tf-lab-vpc"
+    Name    = "tf-${var.environment}-vpc"
     Project = "tf-lab"
   }
 }
@@ -23,7 +23,7 @@ resource "aws_subnet" "lab" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "tf-lab-subnet-${each.key}"
+    Name    = "tf-${var.environment}-subnet-${each.key}"
     Project = "tf-lab"
   }
 }
@@ -32,7 +32,7 @@ resource "aws_internet_gateway" "lab" {
   vpc_id = aws_vpc.lab.id
 
   tags = {
-    Name    = "tf-lab-ipw"
+    Name    = "tf-${var.environment}-ipw"
     Project = "tf-lab"
   }
 }
@@ -46,7 +46,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name    = "tf-lab-public"
+    Name    = "tf-${var.environment}-public"
     Project = "tf-lab"
   }
 }

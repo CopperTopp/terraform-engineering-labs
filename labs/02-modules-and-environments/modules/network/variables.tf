@@ -3,6 +3,11 @@ variable "vpc_cidr_block" {
   type        = string
 }
 
+variable "environment" {
+  description = "Environment name used in network resource tags."
+  type        = string
+}
+
 variable "lab_subnets" {
   description = "Subnet definitions keyed by stable logical identifiers."
 
