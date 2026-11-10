@@ -71,6 +71,17 @@ Planned work belongs in the learning roadmap.
   configures the AWS provider, and exposes the child module's outputs.
 - Verified a fresh-state plan with 9 to add, 0 to change, 0 to destroy,
   and exit code 2. This was a plan-only checkpoint.
+- Verified two root configurations could import the network module,
+  with separate input variables and states.
+
+### Parameterized VPC address ranges by environment
+
+- Replaced the shared network module's hardcoded VPC CIDR with a
+  required input supplied by each root configuration.
+- Verified that lab plans a `10.0.0.0/16` VPC with three subnets
+  and test plans a `10.1.0.0/16` VPC with two subnets.
+- Both plans reused the same module and proposed zero changes
+  or destroys.
 
 ### Next milestone
 

@@ -1,3 +1,8 @@
+variable "vpc_cidr_block" {
+  description = "IPv4 CIDR Block for the VPC."
+  type        = string
+}
+
 variable "lab_subnets" {
   description = "Subnet definitions keyed by stable logical identifiers."
 

@@ -1,3 +1,8 @@
+variable "vpc_cidr_block" {
+  description = "IPv4 CIDR block for the VPC."
+  type        = string
+}
+
 variable "lab_subnets" {
   description = "Subnet definition keyed by Availability Zone suffix."
 
@@ -9,7 +14,8 @@ variable "lab_subnets" {
 module "network" {
   source = "../../modules/network"
 
-  lab_subnets = var.lab_subnets
+  vpc_cidr_block = var.vpc_cidr_block
+  lab_subnets    = var.lab_subnets
 }
 
 output "voc_id" {
