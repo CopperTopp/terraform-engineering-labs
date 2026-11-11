@@ -103,3 +103,7 @@ Planned work belongs in the learning roadmap.
   or destroyed.
 - Verified that state listed the new address with the original ID and
   that the follow-up plan reported no changes with exit code `0`.
+- Removed `terraform_data.renamed` then imported again.  Same Id created but
+  `renamed` is otherwise empty. terraform plan showed `renamed` will be changed 
+  with the value in main.tf.  terraform apply restored `renamed` values.
+  
