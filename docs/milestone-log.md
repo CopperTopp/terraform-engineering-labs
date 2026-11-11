@@ -93,7 +93,13 @@ Planned work belongs in the learning roadmap.
 - Added Validation to new variable environment.
 - Updated Validation to show the failed value(s) in error_messages.
 
-### Next milestone
+## Lab 03 — State, Import, and Recovery
 
-- Reuse the same network module from a second root configuration
-  with its own inputs and state.
+### Preserved resource identity during a rename
+
+- Renamed `terraform_data.example` to `terraform_data.renamed` and
+  observed that the initial plan proposed one creation and one destruction.
+- Added and applied a `moved` block with zero resources added, changed,
+  or destroyed.
+- Verified that state listed the new address with the original ID and
+  that the follow-up plan reported no changes with exit code `0`.
