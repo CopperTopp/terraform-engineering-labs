@@ -106,4 +106,10 @@ Planned work belongs in the learning roadmap.
 - Removed `terraform_data.renamed` then imported again.  Same Id created but
   `renamed` is otherwise empty. terraform plan showed `renamed` will be changed 
   with the value in main.tf.  terraform apply restored `renamed` values.
-  
+
+### Transferred a resource between local state files
+
+- Used `terraform state mv` to transfer a resource from a working copy
+  of the backup into a separate scratch state file.
+- Verified that the destination preserved the saved `input` and `output`
+  before any apply. The earlier CLI import restored only the supplied ID.
