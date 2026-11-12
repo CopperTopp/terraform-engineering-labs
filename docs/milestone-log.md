@@ -113,3 +113,12 @@ Planned work belongs in the learning roadmap.
   of the backup into a separate scratch state file.
 - Verified that the destination preserved the saved `input` and `output`
   before any apply. The earlier CLI import restored only the supplied ID.
+
+### Restored state from backed up state file
+
+- Created new folder to replicate current lab terraform state.
+- Created backup of state file, a copy of the lab state file with renamed state.
+- Ran init to create new blank state file and verified missing state with state
+  list and plan commands.
+- Restored backup of state file with file copy.
+- Ran state list and show, then plan to verify state had been restored.
