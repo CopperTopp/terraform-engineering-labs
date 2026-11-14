@@ -122,3 +122,19 @@ Planned work belongs in the learning roadmap.
   list and plan commands.
 - Restored backup of state file with file copy.
 - Ran state list and show, then plan to verify state had been restored.
+
+### Drift detection
+
+- Create drift.tf creating a file.  Apply.
+- Manually delete file.
+- Run `terraform plan -refresh-only`.
+  - Note that the missing file is acknowledged, but will not be created.
+  - Running `terraform apply -refresh-only` would update the state file to remove
+    the deleted file, getting state in sync with the real world changes.
+- Run `terraform plan`.
+  - Note that the missing file is acknowledged, and is noted that it will be created.
+  - Running `terraform apply` will create the file, geting the real world in sync
+    with the state file.
+- Summary
+  - Without `-refresh-only`, resources are put in the state of the state file.
+  - With `-refresh-only`, the state file is updated to reflect the curent state of the resources.
