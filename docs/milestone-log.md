@@ -154,7 +154,10 @@ Planned work belongs in the learning roadmap.
 - Confirmed terraform_data.renamed retained its ID.
 - Found that local_file.drift_demo retained its filename but had different
   recorded content and IDs.
-- Serial 1 recorded the deliberately altered text; serial 2 recorded the
-  corrected text after apply.
+- Serial 1 recorded the original content containing a typo.
+- Corrected the configured content from "Mangfed by Terraform." to
+  "Managed by Terraform."
+- Applying the correction replaced local_file.drift_demo; serial 2
+  records the corrected content and changed ID.
 - Established that an older state snapshot must be assessed against both
   configuration and actual resources before restoration.
