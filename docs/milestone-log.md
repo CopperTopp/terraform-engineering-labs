@@ -138,3 +138,10 @@ Planned work belongs in the learning roadmap.
 - Summary
   - Without `-refresh-only`, resources are put in the state of the state file.
   - With `-refresh-only`, the state file is updated to reflect the curent state of the resources.
+
+### Remote state file restore
+
+- Create S3 Bucket to later store state file in.  IaC for bucket in backend-bootstrap folder.
+- Migrated Lab 03 state to an S3 backend with bucket versioning and native state locking.
+- Resolved a stale migration lock after identifying missing s3:DeleteObject permission on the lock object.
+- Recreated the deliberately deleted local file and verified a no-change plan against remote state.
