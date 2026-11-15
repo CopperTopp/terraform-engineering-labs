@@ -145,3 +145,5 @@ Planned work belongs in the learning roadmap.
 - Migrated Lab 03 state to an S3 backend with bucket versioning and native state locking.
 - Resolved a stale migration lock after identifying missing s3:DeleteObject permission on the lock object.
 - Recreated the deliberately deleted local file and verified a no-change plan against remote state.
+- Verified S3 state locking blocks concurrent operations and that canceling the owning operation releases
+  the lock; confirmed a subsequent no-change plan.
