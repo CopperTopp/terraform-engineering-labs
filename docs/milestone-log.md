@@ -147,3 +147,14 @@ Planned work belongs in the learning roadmap.
 - Recreated the deliberately deleted local file and verified a no-change plan against remote state.
 - Verified S3 state locking blocks concurrent operations and that canceling the owning operation releases
   the lock; confirmed a subsequent no-change plan.
+
+### Snapshot comparison
+
+- Compared S3 state snapshots with matching lineage and serials 1 and 2.
+- Confirmed terraform_data.renamed retained its ID.
+- Found that local_file.drift_demo retained its filename but had different
+  recorded content and IDs.
+- Serial 1 recorded the deliberately altered text; serial 2 recorded the
+  corrected text after apply.
+- Established that an older state snapshot must be assessed against both
+  configuration and actual resources before restoration.
