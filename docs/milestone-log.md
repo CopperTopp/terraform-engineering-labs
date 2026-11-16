@@ -161,3 +161,9 @@ Planned work belongs in the learning roadmap.
   records the corrected content and changed ID.
 - Established that an older state snapshot must be assessed against both
   configuration and actual resources before restoration.
+- Attempted to push serial 1 over remote serial 2 without force.
+- Terraform rejected the stale snapshot with exit code 1.
+- Completed remote-state recovery using a verified backup.
+- Demonstrated stale-serial and equal-serial/different-content safeguards.
+- Used a deliberate forced restore after comparing lineage and resource
+  attributes; verified recovery with a no-change plan and exit code 0.
