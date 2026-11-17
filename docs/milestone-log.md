@@ -167,3 +167,8 @@ Planned work belongs in the learning roadmap.
 - Demonstrated stale-serial and equal-serial/different-content safeguards.
 - Used a deliberate forced restore after comparing lineage and resource
   attributes; verified recovery with a no-change plan and exit code 0.
+
+## Lab 04 - Automated Validation and CI
+- Established Lab 04's credential-free Terraform validation baseline
+  using typed service definitions and built-in terraform_data resources.
+- Verified formatting and configuration validation locally.
