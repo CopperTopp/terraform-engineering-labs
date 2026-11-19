@@ -225,4 +225,6 @@ Planned work belongs in the learning roadmap.
   using PowerShell's ConvertFrom-Json for maps and objects.
 - Learned about how `output` blocks expose internal values from a child module 
   to the calling parent.
-  
+- Used `-var` command line to change input values to the root-module.
+- Validated that changes were not saved in the state after the apply by using 
+  `terraform output -raw` to show that the value in the state file didn't change.
