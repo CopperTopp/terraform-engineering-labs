@@ -218,3 +218,11 @@ Planned work belongs in the learning roadmap.
   and `terraform state show <path>` to inspect created values.
 - Explored the difference between a `resource` and `resource instance` to
   understand how each is applied and represented.
+- Created `output` blocks to show how to expose attributes to parent modules.
+- Applied and examined `output` results after apply.
+- Used `terraform output` to examine and verify results.
+- Explored the differences between `terraform output`'s no, -raw, and -json flags,
+  using PowerShell's ConvertFrom-Json for maps and objects.
+- Learned about how `output` blocks expose internal values from a child module 
+  to the calling parent.
+  
