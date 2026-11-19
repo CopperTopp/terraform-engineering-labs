@@ -172,3 +172,49 @@ Planned work belongs in the learning roadmap.
 - Established Lab 04's credential-free Terraform validation baseline
   using typed service definitions and built-in terraform_data resources.
 - Verified formatting and configuration validation locally.
+
+## Instituted Tests at Lab End
+- Decided to point this training at getting Terraform's Certification.
+- Instituted the following
+  - At the end of each lab, a test of the quality of the certification 
+    exam will be given regarding the content of that lab.
+  - Further, questions regarding previous labs will be added to reinforce 
+    retention.
+  - Any failed questions will require redoing the entire lab, going back 
+    as far as the lab the failed question came from.
+  - Using ChatGPT, questions will never repeat to prevent mere 
+    memorization.
+- At the end of all labs, pre-tests will be taken under exam conditions.
+- Depending on the failures, the entire set of labs may be redone.
+
+## Lab 01 - Retake
+- Started Lab End tests with Lab 01.
+  - Failed 2 of 12 questions due to wording.
+  - Still a failure due to learning industry terminology and understanding.
+- Redoing Lab 01
+  - Lesson Targets
+    - Explain how Terraform combines configuration files into a module.
+    - Distinguish resource types, local labels, arguments, attributes, 
+      and instance addresses.
+    - Define input contracts using primitive and collection types.
+    - Separate supplied inputs from values derived through locals.
+    - Select environment values using variable-definition files.
+    - Transform and filter collections with expressions.
+    - Write validation conditions and useful error messages.
+    - Manage resource instances using stable for_each keys.
+    - Refactor resource addresses while preserving their identity.
+    - Interpret formatting, validation, plan results, and exit codes.
+    - Explain provider version constraints and dependency-lock-file 
+      responsibilities.
+- Created variable definitions in variables.tf, then implemented 
+  inpuits of those variables in practice.env.tfvars.
+  - Used `terraform console` to examine variable values and undertand
+    its dot notation.
+- Added locals.tf creating local. derived variables combining var. variable
+  inputs.
+  - Verified values with `terraform console`.
+- Added `terraform_data` resource with inputs to describe a few values
+- Ran `terraform apply` to apply the values, then used `terrafrom state list`
+  and `terraform state show <path>` to inspect created values.
+- Explored the difference between a `resource` and `resource instance` to
+  understand how each is applied and represented.
