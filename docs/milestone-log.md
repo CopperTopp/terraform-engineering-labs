@@ -244,3 +244,23 @@ Planned work belongs in the learning roadmap.
 - Used `terraform plan -var="environment=<value>` to test the validation with
   correct and incorrect values to see that it fails as expected.
 ### Stage 9 - Transform a collection with a `for` expression
+- Add local.component_settings to iterate over var.components, defining a new
+  map with name as local.deployment_prefix concatenated with key, captured 
+  instance_size, and captured replicas.
+- Ran `terraform console` to examine and validate var.components map was transformed
+  to var.component_settings correctly.
+### Stage 10 - Use the collection to declare resource instances
+- Modify the "gateway" resource block to be a "component" resource block.
+- Use `for_each` over local.component_settings to iterate the map into multiple
+  resource instances for each of the local_component_settings keys.
+- Add a moved block to inform state that terraform_data.gateway moved to
+  terraform_data.component["gateway"].
+- Updated output blocks for "gateway_name", "gateway_id", and "gateway_settings" to 
+  follow the moved "gateway" resource instance.
+- Run `terraform plan -var-file="practice.env.tfvars"` to verify only the
+  previously unrealized "processor" entry from var.components is added, and
+  that "gateway" was not changed due to the moved block.
+- After successful plan validation, applied changes to save in the state file.
+- Inspected state with `terraform state list` and `terraform state show` to validate
+  resource instances were created as defined.
+- Inspected outputs to validate updates to output blocks using `terraform output`.
