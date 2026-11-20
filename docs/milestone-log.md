@@ -228,3 +228,8 @@ Planned work belongs in the learning roadmap.
 - Used `-var` command line to change input values to the root-module.
 - Validated that changes were not saved in the state after the apply by using 
   `terraform output -raw` to show that the value in the state file didn't change.
+- Added a `validation` block to the `environment` variable, validating that
+  the value would be one of 'practice', 'review', or 'production'.
+- Used `terraform plan -var="environment=<value>` to test the validation with
+  correct and incorrect values to see that it fails as expected.
+  

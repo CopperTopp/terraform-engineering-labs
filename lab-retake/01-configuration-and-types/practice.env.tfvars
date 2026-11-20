@@ -1,11 +1,5 @@
-workers = {
-  reporting = {
-    image   = "worker-v1"
-    enabled = true
-  }
-}
-
-project = "parcel"
+environment = "practice"
+project     = "parcel"
 
 components = {
   gateway = {
