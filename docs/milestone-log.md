@@ -206,30 +206,41 @@ Planned work belongs in the learning roadmap.
     - Interpret formatting, validation, plan results, and exit codes.
     - Explain provider version constraints and dependency-lock-file 
       responsibilities.
+### Stage 1 - Preparation
+- Terraform init lab-retake/01-configuration-and-types folder.
+- Create versions.tf, variables.tf, and practice.env.tfvars files.
+### Stage 2 - Load and instpect inputs
 - Created variable definitions in variables.tf, then implemented 
-  inpuits of those variables in practice.env.tfvars.
+  inputs of those variables in practice.env.tfvars.
   - Used `terraform console` to examine variable values and undertand
     its dot notation.
+### Stage 3 - Derive values with locals
 - Added locals.tf creating local. derived variables combining var. variable
   inputs.
   - Verified values with `terraform console`.
-- Added `terraform_data` resource with inputs to describe a few values
+### Stage 4 - Represent a component as a resource
+- Create main.tf and added `terraform_data` resource with inputs to describe a few values.
+- Ran `terraform plan -var-file="practice.env.tfvars"` and validated results.
+### Stage 5 - Apply and instpect the recorded resource
 - Ran `terraform apply` to apply the values, then used `terrafrom state list`
   and `terraform state show <path>` to inspect created values.
 - Explored the difference between a `resource` and `resource instance` to
   understand how each is applied and represented.
-- Created `output` blocks to show how to expose attributes to parent modules.
+### Stage 6 - Expose selected information with outputs
+- Added outputs.tf and created `output` blocks to show how to expose attributes to parent modules.
 - Applied and examined `output` results after apply.
 - Used `terraform output` to examine and verify results.
 - Explored the differences between `terraform output`'s no, -raw, and -json flags,
   using PowerShell's ConvertFrom-Json for maps and objects.
 - Learned about how `output` blocks expose internal values from a child module 
   to the calling parent.
+### Stage 7 - Override inputs and trace their effects
 - Used `-var` command line to change input values to the root-module.
 - Validated that changes were not saved in the state after the apply by using 
   `terraform output -raw` to show that the value in the state file didn't change.
+### Stage 8 - Validate the environment input
 - Added a `validation` block to the `environment` variable, validating that
   the value would be one of 'practice', 'review', or 'production'.
 - Used `terraform plan -var="environment=<value>` to test the validation with
   correct and incorrect values to see that it fails as expected.
-  
+### Stage 9 - Transform a collection with a `for` expression
