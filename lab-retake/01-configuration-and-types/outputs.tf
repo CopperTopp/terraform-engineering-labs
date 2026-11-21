@@ -15,3 +15,16 @@ output "gateway_settings" {
 
   value = terraform_data.component["gateway"].output
 }
+
+output "component_inventory" {
+  description = "Inventory of existing components."
+
+  value = {
+    for key, comp in terraform_data.component : key => {
+      id            = comp.id
+      name          = comp.output.name
+      instance_size = comp.output.instance_size
+      replicas      = comp.output.replicas
+    }
+  }
+}
