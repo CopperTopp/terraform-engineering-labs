@@ -264,3 +264,13 @@ Planned work belongs in the learning roadmap.
 - Inspected state with `terraform state list` and `terraform state show` to validate
   resource instances were created as defined.
 - Inspected outputs to validate updates to output blocks using `terraform output`.
+### Stage 11 - Build an output for the whole collection
+- Add output block for component_inventory, iterating the `terraform_data.component`
+  instances, capturing several output attributes and the instance id.
+- Ran `terraform validate` to validate the syntax of the added output block.
+- Ran `terraform plan -var-file="<env_tfvars>` to observe that the output block
+  captured the correct attributes and didn't cause a change to the resource instances.
+- Ran `terraform apply` to capture the changes to the state file.
+- Ran `terraform output -json component_inventory` to feed into PowerShell's Hashtable
+  object to see how to interface, sending output results to other scripting languages.
+- Ran `terraform plan` again to verify there were no pending changes.
