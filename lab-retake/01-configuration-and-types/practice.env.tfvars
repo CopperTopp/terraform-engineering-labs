@@ -8,6 +8,10 @@ components = {
   }
   processor = {
     instance_size = "medium"
-    replicas      = 3
+    replicas      = 4
+  }
+  scheduler = {
+    instance_size = "small"
+    replicas      = 1
   }
 }

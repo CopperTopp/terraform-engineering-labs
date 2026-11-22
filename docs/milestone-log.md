@@ -288,3 +288,11 @@ Planned work belongs in the learning roadmap.
 - Used `terraform plan` to validate capture of failed values using temporary changes
   to the replicas attribute for both gateway and processor in practice.env.tfvars.
 - Restored original replica attributes.
+### Stage 14 - Collection changes and resource identity
+- Capture existing resource instances in state file in a PowerShell variable using `terraform output -json component_inventory`.
+- Change processor.replicas from 3 to 4 and add new processor.scheduler to 
+  var.components input in practice.env.tfvars.
+- Use `terraform plan` to validate changes match predictions.
+- Run `terraform apply` to save changes to the state.
+- Capture new resource instances from state to compare to the before instances.
+- Compare the before and after instance settings to verify changes.
