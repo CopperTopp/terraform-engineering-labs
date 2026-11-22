@@ -274,3 +274,11 @@ Planned work belongs in the learning roadmap.
 - Ran `terraform output -json component_inventory` to feed into PowerShell's Hashtable
   object to see how to interface, sending output results to other scripting languages.
 - Ran `terraform plan` again to verify there were no pending changes.
+### Stage 12 - Validate every entry in a collection
+- Add validation block to variable `components` object attribute `replicas` to ensure
+  it is an integer between 1 and 5.
+- Run `terraform validate` and `terraform plan` to validate against practice.env.tfvars.
+- Modify processor's replicas value to 0, 1, 2.5, 5, and 6 to verify failure on
+  0, 2.5, and 6, then rerun `terraform plan` ensuring failure on numbers outside 1-5 
+  and any non-integers.
+- Return processor's replicas to original value.
