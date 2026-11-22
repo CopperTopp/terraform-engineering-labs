@@ -282,3 +282,9 @@ Planned work belongs in the learning roadmap.
   0, 2.5, and 6, then rerun `terraform plan` ensuring failure on numbers outside 1-5 
   and any non-integers.
 - Return processor's replicas to original value.
+### Stage 13 - Make validation errors identity the problem
+- Updated error_message in variable components validation block to use an if with a
+  boolean test that is the inversion of the alltrue() in condition.
+- Used `terraform plan` to validate capture of failed values using temporary changes
+  to the replicas attribute for both gateway and processor in practice.env.tfvars.
+- Restored original replica attributes.

@@ -33,6 +33,13 @@ variable "components" {
         for comp in var.components : comp.replicas >= 1 && comp.replicas <= 5 && floor(comp.replicas) == comp.replicas
       ]
     )
-    error_message = "replicas attribute must be an integer between 1 and 5."
+    error_message = "replicas attribute must be an integer between 1 and 5, found incorrect values ${join(", ",
+      [
+        for key, comp in var.components : "${key}.replicas = ${comp.replicas}"
+        if comp.replicas < 1 ||
+        comp.replicas > 5 ||
+        floor(comp.replicas) != comp.replicas
+      ]
+    )}."
   }
 }
