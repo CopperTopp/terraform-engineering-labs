@@ -42,4 +42,15 @@ variable "components" {
       ]
     )}."
   }
+
+  validation {
+    condition = alltrue([
+      for comp in var.components : contains(["small", "medium", "large"], comp.instance_size)
+    ])
+
+    error_message = "Invalid instance_size(s) found: ${join(", ", [
+      for key, comp in var.components : "${key}.instance_size = ${comp.instance_size}"
+      if !contains(["small", "medium", "large"], comp.instance_size)
+    ])}."
+  }
 }

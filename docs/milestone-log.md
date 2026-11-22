@@ -308,4 +308,39 @@ Planned work belongs in the learning roadmap.
       - modules have to be included with a module block in one of the root .tf files.
     - Only terraform.tf, *.auto.tfvars variable files are auto loaded, all other
       .tfvars files must be explicitly loaded with the -var-files parameter.
-    
+### Stage 16 - Independent practical exercise
+- Change request:
+  - Rename the `scheduler` instance to dispatcher.
+    - Preserve the instance's id using a moved block.
+  - Validate var.components' instance_size attribute.
+    - Valid sizes are to be "small", "medium", and "large".
+    - error_message should display the incorrect value as well as the instance key 
+      it came from.
+  - Add output for scaled_components.
+    - Include only components whose replica count is greateer than 1.
+    - Map components to thier replica value from resource outputs.
+- Steps
+  - Capture current component_inventory output
+  - Validate no pending changes with a `terraform plan`.
+  - Rename 'scheduler' to 'dispatcher' in var.components in practice.env.tfvars.
+  - Add moved block to moved.tf from 'scheduler' to 'dispatcher'.
+  - Validate changes don't incur a destroy/create with `terraform plan`.
+  - Add a new validation block to variable components in variables.tf.
+    - Validate that all instance_size values come from set "small", "medium", "large".
+  - Use `terraform plan` to test valid and invalid instance_size values.
+  - Change the error_message such that we iterate over var.components,
+    displaying key and component.instance_size for failing values.
+  - Add output bloxk to outputs.tf for scaled_components.
+    - Iterate terraform_data.components using 'if' to find components with replica > 1.
+    - Capture those components in a map(), with key as key, and replicas value as value.
+  - Capture finished component_inventory and compare to initial output.
+- Execution
+  - Captured current component_inventory with `$start_inventory = terraform output -json component_inventory | ConvertFrom-Json`
+  - Validated no pending changes.
+  - Changed scheduler to dispatcher in practice.env.tfvars.
+  - Added moved block and validated with `terraform plan`.
+  - Added validation block and validated failure on 'tiny'.
+  - Modified errer_message to show failing resource instance and it's 
+    instance_size value.
+  - Added output to make map of scaled_components using a comprehension.
+  - Capture finished inventory and compared.

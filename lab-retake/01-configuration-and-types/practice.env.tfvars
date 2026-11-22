@@ -10,7 +10,7 @@ components = {
     instance_size = "medium"
     replicas      = 4
   }
-  scheduler = {
+  dispatcher = {
     instance_size = "small"
     replicas      = 1
   }

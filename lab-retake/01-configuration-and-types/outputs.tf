@@ -28,3 +28,11 @@ output "component_inventory" {
     }
   }
 }
+
+output "scaled_components" {
+  description = "Components with replics > 1, keyed in a map by their replica value."
+
+  value = {
+    for key, comp in terraform_data.component : key => comp.output.replicas if comp.output.replicas > 1
+  }
+}
