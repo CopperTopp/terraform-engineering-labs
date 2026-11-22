@@ -289,10 +289,23 @@ Planned work belongs in the learning roadmap.
   to the replicas attribute for both gateway and processor in practice.env.tfvars.
 - Restored original replica attributes.
 ### Stage 14 - Collection changes and resource identity
-- Capture existing resource instances in state file in a PowerShell variable using `terraform output -json component_inventory`.
+- Capture existing resource instances in state file in a PowerShell variable using 
+  `terraform output -json component_inventory`.
 - Change processor.replicas from 3 to 4 and add new processor.scheduler to 
   var.components input in practice.env.tfvars.
 - Use `terraform plan` to validate changes match predictions.
 - Run `terraform apply` to save changes to the state.
 - Capture new resource instances from state to compare to the before instances.
 - Compare the before and after instance settings to verify changes.
+### Stage 15 - Configuration boundaries and version selection
+- Discussed and answered hypotheticals regarding
+  - Version selection syntax and how terraform handles changes in an existing
+    workspace where `init` has already locked.
+  - Workspace files and which are automatically loaded and those that must be
+    explicitly loaded.
+    - Only .tf files in the current directory are loaded, no recursion so subdirectories
+      are ignored.
+      - modules have to be included with a module block in one of the root .tf files.
+    - Only terraform.tf, *.auto.tfvars variable files are auto loaded, all other
+      .tfvars files must be explicitly loaded with the -var-files parameter.
+    
