@@ -335,7 +335,8 @@ Planned work belongs in the learning roadmap.
     - Capture those components in a map(), with key as key, and replicas value as value.
   - Capture finished component_inventory and compare to initial output.
 - Execution
-  - Captured current component_inventory with `$start_inventory = terraform output -json component_inventory | ConvertFrom-Json`
+  - Captured current component_inventory with
+    `$start_inventory = terraform output -json component_inventory | ConvertFrom-Json`
   - Validated no pending changes.
   - Changed scheduler to dispatcher in practice.env.tfvars.
   - Added moved block and validated with `terraform plan`.
@@ -344,3 +345,26 @@ Planned work belongs in the learning roadmap.
     instance_size value.
   - Added output to make map of scaled_components using a comprehension.
   - Capture finished inventory and compared.
+
+## Lab 02 - Retake
+### Stage 1 - Defining the module contract
+- Create workspace lab-retake/02-reusable-modules
+- Create module directory lab-retake/02-reusable-modules/modules/component
+- Create component module's variables.tf file.
+  - Add variable blocks with appropriate default and validations for
+    - component_name - string - no default/
+    - instance_size - string - must be one of "small", "medium", or "large".
+    - replicas - number - must be a whole number between and including 1 and 5.
+- Create component module's main.tf file.
+  - Create terraform_data resource called 'this' with inputs
+    - name capturing var.component_name.
+    - instance_size capturing var.instance_size.
+    - replicas capturing var.replicas.
+- Create root main.tf
+  - Add module with source "./modules/component" with attributes
+    - component_name = "parcel-practice-gateway"
+    - instance_size = "small"
+    - replicas = 2
+- Create root versions.tf and require versions ">= 1.50, < 2.0.0"
+- Run `terraform` for `fmt -recursive`, `inti`, `validate`, and `plan` 
+  to validate the scripts so far.
