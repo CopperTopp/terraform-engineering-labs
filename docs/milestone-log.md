@@ -348,23 +348,36 @@ Planned work belongs in the learning roadmap.
 
 ## Lab 02 - Retake
 ### Stage 1 - Defining the module contract
-- Create workspace lab-retake/02-reusable-modules
-- Create module directory lab-retake/02-reusable-modules/modules/component
-- Create component module's variables.tf file.
-  - Add variable blocks with appropriate default and validations for
+- Created workspace lab-retake/02-reusable-modules
+- Created module directory lab-retake/02-reusable-modules/modules/component
+- Created component module's variables.tf file.
+  - Added variable blocks with appropriate default and validations for
     - component_name - string - no default/
     - instance_size - string - must be one of "small", "medium", or "large".
     - replicas - number - must be a whole number between and including 1 and 5.
-- Create component module's main.tf file.
-  - Create terraform_data resource called 'this' with inputs
+- Created component module's main.tf file.
+  - Created terraform_data resource called 'this' with inputs
     - name capturing var.component_name.
     - instance_size capturing var.instance_size.
     - replicas capturing var.replicas.
-- Create root main.tf
-  - Add module with source "./modules/component" with attributes
+- Created root main.tf
+  - Added module with source "./modules/component" with attributes
     - component_name = "parcel-practice-gateway"
     - instance_size = "small"
     - replicas = 2
-- Create root versions.tf and require versions ">= 1.50, < 2.0.0"
-- Run `terraform` for `fmt -recursive`, `inti`, `validate`, and `plan` 
+- Created root versions.tf and require versions ">= 1.50, < 2.0.0"
+- Ran `terraform` for `fmt -recursive`, `inti`, `validate`, and `plan` 
   to validate the scripts so far.
+### Stage 2 - Expose results from the child module to the parent module
+- Added outputs.tf to the component module.
+- Added output blocks to component's outputs.tf for
+  - id pointed to the generated terraform_date.this resource instance.
+  - settings pointed to the generated terraform_data.this.output resource
+    instance's output.
+- Added outputs.tf to the root module.
+- Added output block for `gateway_id` to root outputs.tf pointed at 
+  the component module's gateway instance's id.
+- Added output block for `gateway_settings` to root outputs.tf pointed at
+  the component module's gateway instance's settings output.
+- Ran terraform's fmt, validate, and plan to verify.
+- Applied plan and captured current gatway_id in PowerShell's $gatewayIdBefore variable.
